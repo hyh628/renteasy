@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
  */
 const AddPostPage = props => {
   const navigate = useNavigate();
-
+ console.log(props)
   const handleSubmit = e => {
     e.preventDefault();
     /**
@@ -28,7 +28,7 @@ const AddPostPage = props => {
      * to go to the /instructor-home page
      */
     console.log(props)
-    const url = '/api/'+props.user_name.user_name+'/post'
+    const url = '/api/post'
     fetch(url,{
       method:'POST',
       headers:{
