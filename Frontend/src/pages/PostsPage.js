@@ -27,7 +27,7 @@ const PostsPage = props => {
       body:JSON.stringify({city: e.target.city.value})
     }).then(response =>{
       if(response.ok){
-        console.log(response)
+        console.log(response.text())
         response.json().then(data=>{
           console.log(data)
           setPosts(data)
