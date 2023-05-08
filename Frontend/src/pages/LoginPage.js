@@ -27,6 +27,17 @@ const LoginPage = props => {
      * update your sign-in status, and then call `navigate('/instructor-home')`
      * to go to the /instructor-home page
      */
+     fetch('http://localhost:8080')
+  .then(response => {
+    if (response.ok) {
+      console.log('Connected to the server successfully');
+    } else {
+      console.log('Failed to connect to the server');
+    }
+  })
+  .catch(error => {
+    console.log('Error occurred while connecting to the server:', error);
+  });
     fetch('/api/login',{
       method:'POST',
       headers:{
