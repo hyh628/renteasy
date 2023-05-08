@@ -3,20 +3,29 @@ import { useNavigate } from "react-router-dom";
 
 const UserHomePage = (props) => {
   const navigate = useNavigate();
-
+  console.log(props)
+  const [infos,setInfos]= useState([])
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     console.log("Get the posts on home page");
-    fetch(`/api/${props.user_name.user_name.toString()}/posts`).then(response =>{
+    fetch(`/api/postsId`).then(response =>{
       if (response.ok){
         response.json().then(data=>{
           setPosts(data)
         })
       }
     })
+    fetch('/api/user').then(response =>{
+      if (response.ok){
+        response.json().then(data=>{
+          setInfos(data)
+        })
+      }
+    })
+
   }, []);
   const handleClick = (id) => {
-    fetch(`/api/${props.user_name.user_name.toString()}/${id.toString()}`,{
+    fetch(`/api/${id.toString()}`,{
       method:'DELETE',
       headers:{
         'Content-Type': 'application/json'
@@ -36,7 +45,13 @@ const UserHomePage = (props) => {
   };
 
   return (
-    <>
+    <><div class="container">
+    <div class="notification is-primary">
+    <h2><strong>Username :</strong> {infos.user_name}</h2 >
+        <p><strong>prefer to be called :</strong> {infos.nick_name}</p >
+        <p><strong>About me :</strong> {infos.info}</p >
+    </div>
+  </div>
      <section className="hero">
       <div class="container is-max-desktop" style={{marginTop: '3rem'}}>
       </div>
